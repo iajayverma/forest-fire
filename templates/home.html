@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWB Prediction</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .form-control:focus {
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
+        }
+        .form-text {
+            color: #777;
+        }
+        .btn-primary {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #1b60d1;
+            box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container form-container">
+        <h1 style="margin-top: 400px;">FWB Prediction</h1>
+
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+
+            <div class="mb-3">
+                <label for="temperature" class="form-label">Temperature</label>
+                <input type="text" class="form-control" name="Temperature" placeholder="Enter Temperature" required>
+                <div class="form-text">Please enter the temperature in degrees Celsius.</div>
+            </div>
+            <div class="mb-3">
+                <label for="rh" class="form-label">Relative Humidity (RH)</label>
+                <input type="text" class="form-control" name="RH" placeholder="Enter RH" required>
+                <div class="form-text">Enter the relative humidity percentage.</div>
+            </div>
+            <div class="mb-3">
+                <label for="ws" class="form-label">Wind Speed (WS)</label>
+                <input type="text" class="form-control" name="WS" placeholder="Enter Wind Speed" required>
+                <div class="form-text">Provide the wind speed in km/h.</div>
+            </div>
+            <div class="mb-3">
+                <label for="rain" class="form-label">Rainfall</label>
+                <input type="text" class="form-control" name="Rain" placeholder="Enter Rainfall" required>
+                <div class="form-text">Input the rainfall in mm.</div>
+            </div>
+            <div class="mb-3">
+                <label for="ffmc" class="form-label">FFMC</label>
+                <input type="text" class="form-control" name="FFMC" placeholder="Enter FFMC" required>
+                <div class="form-text">Provide FFMC index value.</div>
+            </div>
+            <div class="mb-3">
+                <label for="dmc" class="form-label">DMC</label>
+                <input type="text" class="form-control" name="DMC" placeholder="Enter DMC" required>
+                <div class="form-text">Provide DMC index value.</div>
+            </div>
+            <div class="mb-3">
+                <label for="isi" class="form-label">ISI</label>
+                <input type="text" class="form-control" name="ISI" placeholder="Enter ISI" required>
+                <div class="form-text">Provide ISI index value.</div>
+            </div>
+            <div class="mb-3">
+                <label for="classes" class="form-label">Classes</label>
+                <input type="text" class="form-control" name="Classes" placeholder="Enter Classes" required>
+                <div class="form-text">Enter the class category.</div>
+            </div>
+            <div class="mb-3">
+                <label for="region" class="form-label">Region</label>
+                <input type="text" class="form-control" name="Region" placeholder="Enter Region" required>
+                <div class="form-text">Enter the region name.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+
+        <div class="mb-3">
+           
+            
+            <div class="form-text alert alert-success" >The FWI Prediction is {{result}}</div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-kaJ3/U+7PEPcbFnnfS+XH+IHn5wjltcmD8OjCX9pJgFHxRM1dMSQakDxjiooVti5" crossorigin="anonymous"></script>
+
+</body>
+</html>
